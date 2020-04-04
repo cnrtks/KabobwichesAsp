@@ -1,0 +1,43 @@
+﻿@model  Kabobwich;
+@{
+    ViewData["Title"] = "KabobwichForm";
+}
+
+<h2>KabobwichForm</h2>
+<form asp-action="AddKabobwich">
+    <div id="breadButtons">
+        <h3>Bread</h3>
+        @foreach (var bread in (Bread[])Enum.GetValues(typeof(Bread)))
+        {
+            <input type="radio" name="bread" id="@bread" />
+            <label for="@bread">@bread</label>
+        }
+    </div>
+    <div>
+        <h3>Meat</h3>
+        @foreach (var meat in (Meat[])Enum.GetValues(typeof(Meat)))
+        {
+            <input type="radio" name="meat" id="@meat" />
+            <label for="@meat">@meat</label>
+        }
+    </div>
+    <div>
+        <h3>Sauce</h3>
+        @foreach (var sauce in (Sauce[])Enum.GetValues(typeof(Sauce)))
+        {
+            <input type="radio" name="meat" id="@sauce" />
+            <label for="@sauce">@sauce</label>
+        }
+    </div>
+    <div>
+        <h3>Toppings</h3>
+        @foreach (var topping in (Topping[])Enum.GetValues(typeof(Topping)))
+        {
+            <input type="checkbox" name="topping" id="@topping" />
+            <label for="@topping">@topping</label>
+            <br />
+        }
+    </div>
+    <button type="submit">Add</button>
+    <button>Back</button>
+</form>
