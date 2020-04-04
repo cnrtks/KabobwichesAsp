@@ -1,0 +1,15 @@
+﻿@model  IEnumerable<Drink>
+@{
+    ViewData["Title"] = "DrinksView";
+}
+
+<h2>Drinks</h2>
+<form asp-action="AddDrinks">
+    @foreach (var drink in (Drink[])Enum.GetValues(typeof(Drink)))
+    {
+        <label asp-for="@drink">@drink</label>
+        <input asp-for="@drink" type="number" id="side" />
+    }
+    <button type="submit">Add Drink</button>
+</form>
+

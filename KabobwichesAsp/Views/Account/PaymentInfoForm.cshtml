@@ -1,0 +1,34 @@
+﻿@model  PaymentInformation
+@{
+    ViewData["Title"] = "PaymentInfoForm";
+}
+
+<h2>PaymentInfoForm</h2>
+<form>
+    <div>
+        <label asp-for="CardType">Card Type</label>
+        <select asp-for="CardType">
+            @foreach (CardType cType in (CardType[])Enum.GetValues(typeof(CardType)))
+            {
+                <option id="@cType">@cType</option>
+            }
+        </select>
+    </div>
+    <div>
+        <label asp-for="CardNum">Card Number</label>
+        <input asp-for="CardNum" type="text" />
+    </div>
+    <div>
+        <label asp-for="SecurityCode">Security Code</label>
+        <input asp-for="SecurityCode" type="text" />
+    </div>
+    <div>
+        <label asp-for="CardholderName">Cardholder Name</label>
+        <input asp-for="CardholderName" type="text"/>
+    </div>
+    <div>
+        <label asp-for="BillingAddress">Billing Address</label>
+        <!-- dropdown menus of address or button to add adress-->
+    </div>
+    <button type="submit">Add Payment Information</button>
+</form>

@@ -13,9 +13,19 @@ namespace KabobwichesAsp.Controllers
             return View();
         }
 
-        public IActionResult KabobwichForm()
+        public IActionResult AddKabobwich()
         {
-            return View();
+            return View("KabobwichForm");
+        }
+
+        public IActionResult AddSides()
+        {
+            return View("SidesForm");
+        }
+
+        public IActionResult AddDrinks()
+        {
+            return View("DrinksForm");
         }
     }
 }

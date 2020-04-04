@@ -1,0 +1,21 @@
+﻿@model Address
+@{
+    ViewData["Title"] = "AddressForm";
+}
+
+<h2>AddressForm</h2>
+<form>
+    <div>
+        <label asp-for="StreetAddress">Street Address</label>
+        <input type="text" />
+    </div>
+    <div>
+        <label asp-for="City">City</label>
+        <input type="text" />
+    </div>
+    <div>
+        <label asp-for="PostalCode">Postal Code</label>
+        <input type="text" />
+    </div>
+    <button type="submit">Add Address</button>
+</form>

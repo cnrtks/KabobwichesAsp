@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KabobwichesAsp.Models
 {
-    class Order
+    public class Order
     {
         private List<Kabobwich> _kabobwiches;
         private List<Side> _sides;

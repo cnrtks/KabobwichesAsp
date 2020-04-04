@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KabobwichesAsp.Models
 {
-    class Address
+    public class Address
     {
         private string _streetAddress;
         private string _city;

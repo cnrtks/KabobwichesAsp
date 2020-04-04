@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KabobwichesAsp.Models
 {
-    class PaymentInformation
+    public class PaymentInformation
     {
         private CardType _cardType;
         private int _cardNum;
