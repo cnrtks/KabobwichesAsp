@@ -1,11 +1,11 @@
-﻿@model  IEnumerable<Side>;
+﻿@model  List<Side>;
 @{
     ViewData["Title"] = "Sides";
 }
 
 <h2>Sides</h2>
 <form asp-action="AddSides">
-    @foreach (var side in (Side[])Enum.GetValues(typeof(Side)))
+    @foreach (var side in (SideEnum[])Enum.GetValues(typeof(SideEnum)))
     {
         <label asp-for="@side">@side</label>
         <input asp-for="@side" type="number" id="side" />

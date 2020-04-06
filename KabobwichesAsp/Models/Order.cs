@@ -10,8 +10,19 @@ namespace KabobwichesAsp.Models
     {
         public int Id { get; set; }
         private List<Kabobwich> _kabobwiches;
-        private List<Side> _sides;
+        public List<Kabobwich> Kabobwiches { get { return _kabobwiches; } set { this._kabobwiches = value; } }
+        private IEnumerable<Side> _sides;
         private List<Drink> _drinks;
+        public IEnumerable<Side> Sides
+        {
+            get { return _sides; }
+            set { this._sides = value; }
+        }
+        public List<Drink> Drinks
+        {
+            get { return _drinks; }
+            set { this._drinks = value; }
+        }
         private Address _deliveryAddress;
         private PaymentInformation _paymentInformation;
         public Address DeliveryAddress { get { return this._deliveryAddress; } set { this._deliveryAddress = value; } }//add validation
@@ -24,35 +35,18 @@ namespace KabobwichesAsp.Models
             _drinks = new List<Drink>();
         }
 
-        public void AddKabobwich()
+        public void AddKabobwich(Kabobwich kabobwich)
         {
-
-        }
-        public void AddSide()
-        {
-
-        }
-        public void AddDrink()
-        {
-
+            _kabobwiches.Add(kabobwich);
         }
         public double CalculateTotal()
         {
             double total = 0;
-            //add together each item and toppings
-            //add delivery if required
-            //add tax
+            total += _kabobwiches.Count() * 5;
+            total += _sides.Count() * 2;
+            total += _drinks.Count() * 1.5;
+            total *= 1.13;
             return total;
-        }
-        public void ConfirmOrder()
-        {
-            //check at least one item has been ordered
-            //chack payment not null
-            //check address not null
-            //dbSet Kabobwiches
-            //dbSet entire Order
-            //add order to users orders
-            //add kabobwich to users kabobs
         }
     }
 }

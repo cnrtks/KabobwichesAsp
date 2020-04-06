@@ -9,6 +9,8 @@ namespace KabobwichesAsp.Models
     public class Repository : DbContext
     {
         public DbSet<Kabobwich> Kabobwiches { get; set; }
+        public DbSet<Side> Sides { get; set; }
+        public DbSet<Drink> Drinks { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<PaymentInformation> PaymentInfos { get; set; }
         public DbSet<Order> Orders { get; set; }
