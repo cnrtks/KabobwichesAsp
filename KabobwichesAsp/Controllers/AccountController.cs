@@ -26,6 +26,7 @@ namespace KabobwichesAsp.Controllers
 
         public IActionResult AddPaymentInfo()
         {
+            ViewBag.Addresses = _dbContext.Addresses;
             return View("PaymentInfoForm");
         }
 
@@ -33,13 +34,20 @@ namespace KabobwichesAsp.Controllers
         public IActionResult SaveAddress(Address address)
         {
             _dbContext.Addresses.Add(address);
+            _dbContext.SaveChanges();
             return RedirectToAction("index");
         }
         
         //remove address
         //update address
 
-        //add payment
+        [HttpPost]
+        public IActionResult SavePaymentInfo(PaymentInformation paymentInfo)
+        {
+            _dbContext.PaymentInfos.Add(paymentInfo);
+            _dbContext.SaveChanges();
+            return RedirectToAction("index");
+        }
         //remove payment
         //update payment
     }

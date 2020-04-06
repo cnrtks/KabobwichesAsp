@@ -4,7 +4,7 @@
 }
 
 <h2>PaymentInfoForm</h2>
-<form>
+<form asp-action="SavePaymentInfo">
     <div>
         <label asp-for="CardType">Card Type</label>
         <select asp-for="CardType">
@@ -28,7 +28,12 @@
     </div>
     <div>
         <label asp-for="BillingAddress">Billing Address</label>
-        <!-- dropdown menus of address or button to add adress-->
+        <select asp-for="BillingAddress">
+            @foreach (var address in ViewBag.Addresses)
+            {
+            <option>@address.StreetAddress</option>
+            }
+        </select>
     </div>
     <button type="submit">Add Payment Information</button>
 </form>

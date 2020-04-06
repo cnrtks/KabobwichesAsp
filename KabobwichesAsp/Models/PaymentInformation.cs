@@ -8,11 +8,14 @@ namespace KabobwichesAsp.Models
 {
     public class PaymentInformation
     {
+        public int Id { get; set; }
         private CardType _cardType;
         private int _cardNum;
         private int _securityCode;
         private string _cardholderName;
         private Address _billingAddress;
+
+        public PaymentInformation() { }
 
         public CardType CardType
         {

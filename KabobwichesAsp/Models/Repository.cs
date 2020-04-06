@@ -15,7 +15,7 @@ namespace KabobwichesAsp.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=Customers;Data Source=DESKTOP-KFKJOV0\SQLEXPRESS01");
+            optionsBuilder.UseSqlServer(@"Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=Kabobwich;Data Source=DESKTOP-KFKJOV0\SQLEXPRESS01");
         }
     }
 }

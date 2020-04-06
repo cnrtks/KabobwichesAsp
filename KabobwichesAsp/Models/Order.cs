@@ -8,6 +8,7 @@ namespace KabobwichesAsp.Models
 {
     public class Order
     {
+        public int Id { get; set; }
         private List<Kabobwich> _kabobwiches;
         private List<Side> _sides;
         private List<Drink> _drinks;

@@ -8,9 +8,18 @@ namespace KabobwichesAsp.Models
 {
     public class Address
     {
+        public int Id { get; set; }
         private string _streetAddress;
         private string _city;
         private string _postalCode;
+
+        public Address() { }
+        public Address(string streetAddress, string city, string postalCode)
+        {
+            this._streetAddress = streetAddress;
+            this._city = city;
+            PostalCode = postalCode;
+        }
 
         public string StreetAddress
         {
@@ -25,13 +34,6 @@ namespace KabobwichesAsp.Models
         public string PostalCode {
             get { return this._postalCode; }
             set { this._postalCode = value; }//add validation
-        }
-
-        Address(string streetAddress, string city, string postalCode)
-        {
-            this._streetAddress = streetAddress;
-            this._city = city;
-            PostalCode = postalCode;
         }
     }
 }
