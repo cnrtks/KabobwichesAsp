@@ -4,14 +4,16 @@ using KabobwichesAsp.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace KabobwichesAsp.Migrations
 {
     [DbContext(typeof(Repository))]
-    partial class RepositoryModelSnapshot : ModelSnapshot
+    [Migration("20200407213136_sides List")]
+    partial class sidesList
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,21 +38,28 @@ namespace KabobwichesAsp.Migrations
                     b.ToTable("Addresses");
                 });
 
+            modelBuilder.Entity("KabobwichesAsp.Models.Drink", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("OrderId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("Drinks");
+                });
+
             modelBuilder.Entity("KabobwichesAsp.Models.Kabobwich", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Bread");
-
-                    b.Property<int>("Meat");
-
                     b.Property<int?>("OrderId");
-
-                    b.Property<int>("Sauce");
-
-                    b.Property<string>("Toppings");
 
                     b.HasKey("Id");
 
@@ -67,11 +76,7 @@ namespace KabobwichesAsp.Migrations
 
                     b.Property<int?>("DeliveryAddressId");
 
-                    b.Property<string>("Drinks");
-
                     b.Property<int?>("PaymentInformationId");
-
-                    b.Property<string>("Sides");
 
                     b.HasKey("Id");
 
@@ -105,10 +110,32 @@ namespace KabobwichesAsp.Migrations
                     b.ToTable("PaymentInfos");
                 });
 
+            modelBuilder.Entity("KabobwichesAsp.Models.Side", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("OrderId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("Sides");
+                });
+
+            modelBuilder.Entity("KabobwichesAsp.Models.Drink", b =>
+                {
+                    b.HasOne("KabobwichesAsp.Models.Order")
+                        .WithMany("Drinks")
+                        .HasForeignKey("OrderId");
+                });
+
             modelBuilder.Entity("KabobwichesAsp.Models.Kabobwich", b =>
                 {
-                    b.HasOne("KabobwichesAsp.Models.Order", "Order")
-                        .WithMany()
+                    b.HasOne("KabobwichesAsp.Models.Order")
+                        .WithMany("Kabobwiches")
                         .HasForeignKey("OrderId");
                 });
 
@@ -128,6 +155,13 @@ namespace KabobwichesAsp.Migrations
                     b.HasOne("KabobwichesAsp.Models.Address", "BillingAddress")
                         .WithMany()
                         .HasForeignKey("BillingAddressId");
+                });
+
+            modelBuilder.Entity("KabobwichesAsp.Models.Side", b =>
+                {
+                    b.HasOne("KabobwichesAsp.Models.Order")
+                        .WithMany("Sides")
+                        .HasForeignKey("OrderId");
                 });
 #pragma warning restore 612, 618
         }

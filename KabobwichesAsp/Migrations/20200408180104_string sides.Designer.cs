@@ -4,14 +4,16 @@ using KabobwichesAsp.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace KabobwichesAsp.Migrations
 {
     [DbContext(typeof(Repository))]
-    partial class RepositoryModelSnapshot : ModelSnapshot
+    [Migration("20200408180104_string sides")]
+    partial class stringsides
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,15 +44,7 @@ namespace KabobwichesAsp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Bread");
-
-                    b.Property<int>("Meat");
-
                     b.Property<int?>("OrderId");
-
-                    b.Property<int>("Sauce");
-
-                    b.Property<string>("Toppings");
 
                     b.HasKey("Id");
 
@@ -107,8 +101,8 @@ namespace KabobwichesAsp.Migrations
 
             modelBuilder.Entity("KabobwichesAsp.Models.Kabobwich", b =>
                 {
-                    b.HasOne("KabobwichesAsp.Models.Order", "Order")
-                        .WithMany()
+                    b.HasOne("KabobwichesAsp.Models.Order")
+                        .WithMany("Kabobwiches")
                         .HasForeignKey("OrderId");
                 });
 

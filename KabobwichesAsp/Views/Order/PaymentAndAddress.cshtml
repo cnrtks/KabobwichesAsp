@@ -1,0 +1,28 @@
+﻿@model Order
+@{
+    ViewData["Title"] = "PaymentAndAddress";
+}
+
+<h2>PaymentAndAddress</h2>
+<form asp-action="PlaceOrder">
+    <h3>Delivery Address</h3>
+    <select asp-for="DeliveryAddress">
+        @{ foreach (Address address in ViewBag.Addresses)
+            {
+                <option value="@address">@address.StreetAddress</option>
+            }
+        }
+    </select>
+    <h3>Payment Information</h3>
+    <select asp-for="PaymentInformation">
+        @{
+            foreach (PaymentInformation payment in ViewBag.Payments)
+            {
+                <option value="@payment">@payment.CardNum</option>
+            }
+        }
+    </select>
+    <button type="submit">Place Order</button>
+</form>
+
+

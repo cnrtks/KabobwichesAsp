@@ -9,7 +9,7 @@ namespace KabobwichesAsp.Models
     {
         public int Id { get; set; }
         public string Name;
-        private Side(SideEnum @enum)
+        public Side(SideEnum @enum)
         {
             Id = (int)@enum;
             Name = @enum.ToString();

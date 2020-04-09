@@ -14,6 +14,14 @@ namespace KabobwichesAsp.Controllers
         {
             return View();
         }
+        public IActionResult Order()
+        {
+            return View("../Order/Index");
+        }
+        public IActionResult Account()
+        {
+            return View("../Account/Index");
+        }
 
         //default asp project code
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

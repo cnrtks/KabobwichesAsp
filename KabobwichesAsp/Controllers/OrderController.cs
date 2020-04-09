@@ -9,7 +9,6 @@ namespace KabobwichesAsp.Controllers
 {
     public class OrderController : Controller
     {
-        Order order = new Order();
         Repository _dbContext;
 
         public OrderController()
@@ -19,51 +18,44 @@ namespace KabobwichesAsp.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.Total = order.CalculateTotal();
-            return View();
-        }
-
-        public IActionResult KabobwichForm()
-        {
-            return View("KabobwichForm");
-        }
-        [HttpPost]
-        public IActionResult AddKabobwich(Kabobwich kabobwich)
-        {
-            order.AddKabobwich(kabobwich);
-            return RedirectToAction("index");
-        }
-
-
-        public IActionResult SidesForm()
-        {
-            return View("SidesForm");
-        }
-        public IActionResult AddSides(IEnumerable<Side> sides)
-        {
-            order.Sides = sides;
-            return RedirectToAction("index");
-        }
-
-        public IActionResult DrinksForm()
-        {
-            return View("DrinksForm");
-        }
-
-        [HttpPost]
-        public IActionResult AddDrinks(List<Drink> drinks)
-        {
-            order.Drinks = drinks;
-            return RedirectToAction("index");
-        }
-
-        [HttpPost]
-        public IActionResult SaveOrder()
-        {
-            _dbContext.Kabobwiches.AddRange(order.Kabobwiches);
+            Order order = new Order();
             _dbContext.Orders.Add(order);
             _dbContext.SaveChanges();
-            order = new Order();
+            ViewBag.OrderId = order.Id;
+            return View("KabobwichForm");
+        }
+
+        [HttpPost]
+        public IActionResult AddKabobwich(Kabobwich kabobwich, int orderId)
+        {
+            var order = _dbContext.Orders.Find(orderId);
+            if (kabobwich != null)
+            {
+                kabobwich.Order = order;
+                _dbContext.Kabobwiches.Add(kabobwich);
+                _dbContext.SaveChanges();
+            }
+            else { return RedirectToAction("index"); }
+            ViewBag.OrderId = orderId;
+            return View("SidesAndDrinks");
+        }
+
+        [HttpPost]
+        public IActionResult AddSidesAndDrinksToOrder(int orderId, string sideString, string drinkString)
+        {
+            var order = _dbContext.Orders.Find(orderId);
+            order.Sides = sideString;
+            order.Drinks = drinkString;
+            _dbContext.SaveChanges();
+            ViewBag.Addresses = _dbContext.Addresses;
+            ViewBag.Payments = _dbContext.PaymentInfos;
+            return View("PaymentAndAddress", order);
+        }
+        [HttpPost]
+        public IActionResult PlaceOrder(Order order)
+        {
+            _dbContext.Orders.Add(order);
+            _dbContext.SaveChanges();
             return View("ThankYou");
         }
     }
