@@ -3,6 +3,7 @@
     background-color: yellowgreen;
 }
 
-Button{
-    visibility:visible;
+img {
+    max-width: 25px;
+    max-height: 25px;
 }

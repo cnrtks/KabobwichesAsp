@@ -10,7 +10,7 @@
     @{ foreach (var side in (SideEnum[])Enum.GetValues(typeof(SideEnum)))
         {
             <label asp-for="@side">@side</label>
-            <button type="button" onClick="(function () { document.getElementById('SideString').value += '@side.ToString(),' })()">+ @side</button>
+            <button type="button" onClick="(function () { document.getElementById('SideString').value += '@side.ToString(),' })()"> + </button>
         }
     }
     <h3>Drinks</h3>
@@ -18,9 +18,10 @@
     @{ foreach (var drink in (DrinkEnum[])Enum.GetValues(typeof(DrinkEnum)))
         {
             <label asp-for="@drink">@drink</label>
-            <button type="button" onClick="(function () { document.getElementById('DrinkString').value += '@drink.ToString(),'})()">+ @drink</button>
+            <button type="button" onClick="(function () { document.getElementById('DrinkString').value += '@drink.ToString(),'})()"> + </button>
         }
     }
     <input type="hidden" name="orderId" value="@ViewBag.OrderId" />
-    <button type="submit">Choose Delivery Address And Payment Method</button>
+    <br />
+    <button type="submit">Confirm</button>
 </form>

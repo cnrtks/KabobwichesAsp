@@ -25,5 +25,14 @@ namespace KabobwichesAsp.Models
         private PaymentInformation _paymentInformation;
         public Address DeliveryAddress { get { return this._deliveryAddress; } set { this._deliveryAddress = value; } }//add validation
         public PaymentInformation PaymentInformation { get { return this._paymentInformation; } set { this._paymentInformation = value; } }//add validation }
+
+        public int CountSides()
+        {
+            return _sides.Count(ch => ch == ',');
+        }
+        public int CountDrinks()
+        {
+            return _drinks.Count(ch => ch == ',');
+        }
     }
 }
