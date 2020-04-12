@@ -17,7 +17,7 @@
         <h3>Meat</h3>
         @foreach (var meat in (Meat[])Enum.GetValues(typeof(Meat)))
         {
-            <input asp-for="Meat" type="radio" value="@meat" name="meat" id="@meat" />
+            <input asp-for="Meat" type="radio" checked="checked" value="@meat" name="meat" id="@meat" />
             <label for="@meat">@meat</label>
         }
     </div>
@@ -25,7 +25,7 @@
         <h3>Sauce</h3>
         @foreach (var sauce in (Sauce[])Enum.GetValues(typeof(Sauce)))
         {
-            <input asp-for="Sauce" type="radio" value="@sauce" name="sauce" id="@sauce" />
+            <input asp-for="Sauce" type="radio" checked="checked" value="@sauce" name="sauce" id="@sauce" />
             <label for="@sauce">@sauce</label>
         }
     </div>
@@ -40,5 +40,5 @@
     </div>
     <input type="hidden" name="orderId" value="@ViewBag.OrderId" />
     <button type="submit">Add</button>
-    <a href="/Order">Back</a>
+    <button asp-action="OrderOverview">Back</button>
 </form>

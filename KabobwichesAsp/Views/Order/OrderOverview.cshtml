@@ -1,14 +1,24 @@
-﻿@model  Order
+﻿@model Order
 @{
     ViewData["Title"] = "OrderOverview";
+    var numOfSides = Model.CountSides();
+    var numOfDrinks = Model.CountDrinks();
 }
 
 <h2>OrderOverview</h2>
-<a href="/Order/KabobwichForm/">Add a kabobwich</a>
-<a href="/Order/SidesAndDrinks/">Add sides and drinks</a>
-<a href="/Order/PaymentAndAddress">Add delivery address and payment info</a>
+<div class="buttonGroup">
+    <a href="/Order/KabobwichForm/">Add a kabobwich</a>
+    <br />
+    <a href="/Order/SidesAndDrinks/">Add sides and drinks</a>
+    <br />
+    <a href="/Order/PaymentAndAddress">Add delivery address and payment info</a>
+</div>
+<div class="orderInfo">
+    <p>kabobs: @ViewBag.KabobwichCount</p>
+    <p>sides: @numOfSides</p>
+    <p>drinks: @numOfDrinks</p>
+    @{ var subtotal = ViewBag.KabobwichCount * Price.Kabobwich + numOfSides * Price.Side + numOfDrinks * Price.Drink;}
+    <p>Subtotal: @string.Format("{0:C}", subtotal)</p>
+    <p id="total">Total: @string.Format("{0:C}", subtotal * (1 + Price.Tax))</p>
+</div>
 <a href="/Order/PlaceOrder/">Place Order</a>
-
-<p>kabobs: @ViewBag.KabobwichCount</p>
-<p>sides: @Model.CountSides()</p>
-<p>drinks: @Model.CountDrinks()</p>

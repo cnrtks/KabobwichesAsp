@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+              "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="2.66667in" height="2.66667in"
+     viewBox="0 0 800 800">
+  <path id="bottle"
+    fill="URL(#bottleGrad)" stroke="black" stroke-width="1"
+    d="M 373.50,46.50
+           C 373.50,46.50 402.00,58.50 433.50,45.00
+             438.00,204.00 495.00,301.50 513.00,321.00
+             529.50,342.00 540.00,438.00 520.50,469.50
+             486.00,588.00 484.50,628.50 505.50,687.00
+             523.50,706.50 504.00,732.00 504.00,732.00
+             504.00,732.00 385.50,762.00 303.00,736.50
+             303.00,733.50 279.00,708.00 301.50,691.50
+             327.00,664.50 322.50,529.50 277.50,477.00
+             246.00,441.00 271.50,336.00 291.00,309.00
+             364.50,190.50 373.50,46.50 373.50,46.50 Z" />
+  <path id="cap"
+        fill="#f33" stroke="black" stroke-width="1"
+        d="M 354.00,36.00
+           C 399.00,49.50 423.00,37.50 442.50,34.50
+             442.50,34.50 469.50,61.50 453.00,75.00
+             405.00,93.00 349.50,73.50 349.50,73.50
+             327.00,69.00 336.00,45.00 354.00,36.00 Z" />
+  <defs>
+    <linearGradient id="bottleGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:rgb(255,255,255);stop-opacity:0.1" />
+      <stop offset="25%" style="stop-color:rgb(255,250,240);stop-opacity:0.5" />
+      <stop offset="26%" style="stop-color:rgb(100,70,60);stop-opacity:0.7" />
+      <stop offset="100%" style="stop-color:rgb(60,48,36);stop-opacity:1" />
+    </linearGradient>
+  </defs>
+</svg>

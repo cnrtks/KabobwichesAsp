@@ -1,9 +1,104 @@
 ﻿body {
+    --jet: #020202;
+    --black: #242424;
+    --brown: #c69455;
+    --brownlight: #f6d99f;
+    --white: #fcfcfc;
+    --greylight: #e6e6e6;
+    --red: #e2534b;
+    --reddark: #e2534b;
+    --redlight: #f9a08e;
+    --pink: #e571a0;
+    --pinkdark: #d5417f;
+    --yellow: #f5e025;
+    --green: #98a249;
+    --greendark: #667a3d;
+    --blue: #9ab7e1;
+    --bluedark: 6b88b2;
+    --navy: #234970;
     font-family: Georgia;
-    background-color: yellowgreen;
+    background-color: var(--yellow);
+    color: var(--black);
 }
 
-img {
-    max-width: 25px;
-    max-height: 25px;
+h3 {
+    color: var(--navy);
+    text-shadow: -1px 0 var(--jet), 0 1px var(--jet), 1px 0 var(--jet), 0 -1px var(--jet);
+}
+
+a {
+    font-size: 2em;
+    text-decoration: none;
+    color: var(--navy);
+}
+
+    a:hover {
+        text-decoration: dotted;
+        color: var(--green);
+    }
+
+input, select {
+    background-color: var(--green);
+    border: none;
+    width: 100%;
+}
+
+button {
+    background-color: var(--green);
+    border: none;
+    margin: 1em;
+}
+
+.buttonGroup {
+    color: var(--blue);
+    text-shadow: -1px 0 var(--bluedark), 0 1px var(--bluedark), 1px 0 var(--bluedark), 0 -1px var(--bluedark);
+}
+
+.orderInfo {
+    margin: 1em;
+    padding: 1em;
+    border: 1em solid var(--red);
+}
+
+#banner {
+    margin: 2em;
+    padding: 2em;
+    border: 1em solid var(--red);
+    border-radius: 1em;
+}
+
+#offers {
+    margin: 1em;
+}
+
+    #offers figure {
+        float: left;
+    }
+
+    #offers img {
+        clear: left;
+        margin-bottom: 1px;
+        margin-right: 10px;
+        width: 250px;
+        height: 250px;
+    }
+
+    #offers figcaption {
+        position: relative;
+        top: 0px;
+        left: 2em;
+        float: left;
+        font-size: 3em;
+        color: var(--blue);
+        text-shadow: -1px 0 var(--bluedark), 0 1px var(--bluedark), 1px 0 var(--bluedark), 0 -1px var(--bluedark);
+    }
+
+    #offers::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+#total {
+    font-weight: bolder;
 }

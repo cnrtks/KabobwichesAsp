@@ -2,7 +2,7 @@
 
 namespace KabobwichesAsp.Migrations
 {
-    public partial class Imsolost : Migration
+    public partial class Migration10 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

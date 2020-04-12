@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KabobwichesAsp.Migrations
 {
     [DbContext(typeof(Repository))]
-    [Migration("20200406212414_sides and drinks model")]
-    partial class sidesanddrinksmodel
+    [Migration("20200410202704_Migration 1.0")]
+    partial class Migration10
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,28 +38,21 @@ namespace KabobwichesAsp.Migrations
                     b.ToTable("Addresses");
                 });
 
-            modelBuilder.Entity("KabobwichesAsp.Models.Drink", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("OrderId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("Drinks");
-                });
-
             modelBuilder.Entity("KabobwichesAsp.Models.Kabobwich", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("Bread");
+
+                    b.Property<int>("Meat");
+
                     b.Property<int?>("OrderId");
+
+                    b.Property<int>("Sauce");
+
+                    b.Property<string>("Toppings");
 
                     b.HasKey("Id");
 
@@ -76,7 +69,11 @@ namespace KabobwichesAsp.Migrations
 
                     b.Property<int?>("DeliveryAddressId");
 
+                    b.Property<string>("Drinks");
+
                     b.Property<int?>("PaymentInformationId");
+
+                    b.Property<string>("Sides");
 
                     b.HasKey("Id");
 
@@ -110,32 +107,10 @@ namespace KabobwichesAsp.Migrations
                     b.ToTable("PaymentInfos");
                 });
 
-            modelBuilder.Entity("KabobwichesAsp.Models.Side", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("OrderId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("Sides");
-                });
-
-            modelBuilder.Entity("KabobwichesAsp.Models.Drink", b =>
-                {
-                    b.HasOne("KabobwichesAsp.Models.Order")
-                        .WithMany("Drinks")
-                        .HasForeignKey("OrderId");
-                });
-
             modelBuilder.Entity("KabobwichesAsp.Models.Kabobwich", b =>
                 {
-                    b.HasOne("KabobwichesAsp.Models.Order")
-                        .WithMany("Kabobwiches")
+                    b.HasOne("KabobwichesAsp.Models.Order", "Order")
+                        .WithMany()
                         .HasForeignKey("OrderId");
                 });
 
@@ -155,13 +130,6 @@ namespace KabobwichesAsp.Migrations
                     b.HasOne("KabobwichesAsp.Models.Address", "BillingAddress")
                         .WithMany()
                         .HasForeignKey("BillingAddressId");
-                });
-
-            modelBuilder.Entity("KabobwichesAsp.Models.Side", b =>
-                {
-                    b.HasOne("KabobwichesAsp.Models.Order")
-                        .WithMany("Sides")
-                        .HasForeignKey("OrderId");
                 });
 #pragma warning restore 612, 618
         }
