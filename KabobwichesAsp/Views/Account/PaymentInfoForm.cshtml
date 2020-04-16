@@ -1,39 +1,39 @@
 ﻿@model  PaymentInformation
 @{
-    ViewData["Title"] = "PaymentInfoForm";
+    ViewData["Title"] = "Payment Information";
 }
 
 <h2>PaymentInfoForm</h2>
 <form asp-action="SavePaymentInfo">
     <div>
         <label asp-for="CardType">Card Type</label>
-        <select asp-for="CardType">
+        <select asp-for="CardType" class="form-control" required>
             @foreach (CardType cType in (CardType[])Enum.GetValues(typeof(CardType)))
             {
-                <option id="@cType">@cType</option>
+                <option id="@Convert.ChangeType(cType, typeof(int))">@cType</option>
             }
         </select>
     </div>
     <div>
         <label asp-for="CardNum">Card Number</label>
-        <input asp-for="CardNum" type="text" />
+        <input asp-for="CardNum" type="text" class="form-control" maxlength="16"  required />
     </div>
     <div>
         <label asp-for="SecurityCode">Security Code</label>
-        <input asp-for="SecurityCode" type="text" />
+        <input asp-for="SecurityCode" type="text" class="form-control" maxlength="3" required />
     </div>
     <div>
         <label asp-for="CardholderName">Cardholder Name</label>
-        <input asp-for="CardholderName" type="text"/>
+        <input asp-for="CardholderName" type="text" class="form-control" required />
     </div>
     <div>
         <label asp-for="BillingAddress">Billing Address</label>
-        <select asp-for="BillingAddress">
+        <select asp-for="BillingAddress" class="form-control" required>
             @foreach (var address in ViewBag.Addresses)
             {
-            <option>@address.StreetAddress</option>
+            <option value="@address.Id">@address.StreetAddress</option>
             }
         </select>
     </div>
-    <button type="submit">Add Payment Information</button>
+    <button type="submit" class="btn btn-primary">Add Payment Information</button>
 </form>

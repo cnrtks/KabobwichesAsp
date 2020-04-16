@@ -7,11 +7,11 @@
 
 <h2>OrderOverview</h2>
 <div class="buttonGroup">
-    <a href="/Order/KabobwichForm/">Add a kabobwich</a>
+    <a href="/Order/KabobwichForm/" class="btn btn-block btn-primary">Add a kabobwich</a>
     <br />
-    <a href="/Order/SidesAndDrinks/">Add sides and drinks</a>
+    <a href="/Order/SidesAndDrinks/" class="btn btn-block btn-primary">Add sides and drinks</a>
     <br />
-    <a href="/Order/PaymentAndAddress">Add delivery address and payment info</a>
+    <a href="/Order/PaymentAndAddress" class="btn btn-block btn-primary">Add delivery address and payment info</a>
 </div>
 <div class="orderInfo">
     <p>kabobs: @ViewBag.KabobwichCount</p>
@@ -21,4 +21,4 @@
     <p>Subtotal: @string.Format("{0:C}", subtotal)</p>
     <p id="total">Total: @string.Format("{0:C}", subtotal * (1 + Price.Tax))</p>
 </div>
-<a href="/Order/PlaceOrder/">Place Order</a>
+<a href="/Order/PlaceOrder/" class="btn btn-primary">Place Order</a>

@@ -6,23 +6,23 @@
 <h2>PaymentAndAddress</h2>
 <form asp-action="AddPaymentAndAddressToOrder">
     <h3>Delivery Address</h3>
-    <select asp-for="DeliveryAddress">
+    <select asp-for="DeliveryAddress" class="form-control">
         @{ foreach (Address address in ViewBag.Addresses)
             {
-                <option value="@address">@address.StreetAddress</option>
+                <option value="@address.Id">@address.StreetAddress</option>
             }
         }
     </select>
     <h3>Payment Information</h3>
-    <select asp-for="PaymentInformation">
+    <select asp-for="PaymentInformation" class="form-control">
         @{
             foreach (PaymentInformation payment in ViewBag.Payments)
             {
-                <option value="@payment">@payment.CardNum</option>
+                <option value="@payment.Id">@payment.CardNum</option>
             }
         }
     </select>
-    <button type="submit">Confirm</button>
+    <button type="submit" class="btn btn-primary">Confirm</button>
 </form>
 
 
