@@ -10,7 +10,7 @@
     @{ foreach (var side in (SideEnum[])Enum.GetValues(typeof(SideEnum)))
         {
             <label asp-for="@side">@side</label>
-            <button type="button" onClick="(function () { document.getElementById('SideString').value += '@side.ToString(),' })()"> + </button>
+            <button type="button" class="btn btn-sm btn-primary"  onClick="(function () { document.getElementById('SideString').value += '@side.ToString(),' })()"> + </button>
         }
     }
     <h3>Drinks</h3>
@@ -18,10 +18,10 @@
     @{ foreach (var drink in (DrinkEnum[])Enum.GetValues(typeof(DrinkEnum)))
         {
             <label asp-for="@drink">@drink</label>
-            <button type="button" onClick="(function () { document.getElementById('DrinkString').value += '@drink.ToString(),'})()"> + </button>
+            <button type="button" class="btn btn-sm btn-primary"  onClick="(function () { document.getElementById('DrinkString').value += '@drink.ToString(),'})()"> + </button>
         }
     }
     <input type="hidden" name="orderId" value="@ViewBag.OrderId" />
     <br />
-    <button type="submit">Confirm</button>
+    <button type="submit" class="btn btn-primary">Confirm</button>
 </form>

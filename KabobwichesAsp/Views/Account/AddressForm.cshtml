@@ -1,21 +1,21 @@
 ﻿@model Address
 @{
-    ViewData["Title"] = "AddressForm";
+    ViewData["Title"] = "Customer Address";
 }
 
 <h2>AddressForm</h2>
 <form asp-action="SaveAddress">
     <div>
         <label asp-for="StreetAddress">Street Address</label>
-        <input asp-for="StreetAddress" type="text" />
+        <input asp-for="StreetAddress" type="text" class="form-control" required/>
     </div>
     <div>
         <label asp-for="City">City</label>
-        <input asp-for="City" type="text" />
+        <input asp-for="City" type="text" class="form-control" required />
     </div>
     <div>
         <label asp-for="PostalCode">Postal Code</label>
-        <input asp-for="PostalCode" type="text" />
+        <input asp-for="PostalCode" type="text" class="form-control" required />
     </div>
-    <button type="submit">Add Address</button>
+    <button type="submit" class="btn btn-primary">Add Address</button>
 </form>

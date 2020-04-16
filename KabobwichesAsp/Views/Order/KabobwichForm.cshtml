@@ -5,7 +5,7 @@
 
 <h2>KabobwichForm</h2>
 <form asp-action="AddKabobwich">
-    <div id="breadButtons">
+    <div class="form-group">
         <h3>Bread</h3>
         @foreach (var bread in (Bread[])Enum.GetValues(typeof(Bread)))
         {
@@ -13,7 +13,7 @@
             <label for="@bread">@bread</label>
         }
     </div>
-    <div>
+    <div  class="form-group">
         <h3>Meat</h3>
         @foreach (var meat in (Meat[])Enum.GetValues(typeof(Meat)))
         {
@@ -21,7 +21,7 @@
             <label for="@meat">@meat</label>
         }
     </div>
-    <div>
+    <div  class="form-group">
         <h3>Sauce</h3>
         @foreach (var sauce in (Sauce[])Enum.GetValues(typeof(Sauce)))
         {
@@ -29,7 +29,7 @@
             <label for="@sauce">@sauce</label>
         }
     </div>
-    <div>
+    <div  class="form-group">
         <h3>Toppings</h3>
         @foreach (var topping in (Topping[])Enum.GetValues(typeof(Topping)))
         {
@@ -39,6 +39,6 @@
         }
     </div>
     <input type="hidden" name="orderId" value="@ViewBag.OrderId" />
-    <button type="submit">Add</button>
-    <button asp-action="OrderOverview">Back</button>
+    <button type="submit" class="btn btn-primary" >Add</button>
+    <button asp-action="OrderOverview" class="btn btn-danger">Back</button>
 </form>

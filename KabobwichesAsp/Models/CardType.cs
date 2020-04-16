@@ -8,8 +8,8 @@ namespace KabobwichesAsp.Models
 {
     public enum CardType
     {
-        DEBIT,
-        VISA,
-        MASTERCARD
+        DEBIT = 1,
+        VISA = 2,
+        MASTERCARD = 3
     }
 }

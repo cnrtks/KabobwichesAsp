@@ -10,7 +10,7 @@ namespace KabobwichesAsp.Models
     {
         public int Id { get; set; }
         private CardType _cardType;
-        private int _cardNum;
+        private string _cardNum;
         private int _securityCode;
         private string _cardholderName;
         private Address _billingAddress;
@@ -22,7 +22,7 @@ namespace KabobwichesAsp.Models
             get { return this._cardType; }
             set { this._cardType = value; }
         }
-        public int CardNum
+        public string CardNum
         {
             get { return this._cardNum; }
             set { this._cardNum = value; }
