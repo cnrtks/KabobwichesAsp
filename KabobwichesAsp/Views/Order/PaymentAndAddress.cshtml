@@ -18,7 +18,7 @@
         @{
             foreach (PaymentInformation payment in ViewBag.Payments)
             {
-                <option id="@payment.BillingAddress">@payment.CardNum</option>
+                <option value="@payment">@payment.CardNum</option>
             }
         }
     </select>
