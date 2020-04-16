@@ -42,8 +42,9 @@ namespace KabobwichesAsp.Controllers
         //update address
 
         [HttpPost]
-        public IActionResult SavePaymentInfo(PaymentInformation paymentInfo)
+        public IActionResult SavePaymentInfo(PaymentInformation paymentInfo, Address billingAddress)
         {
+            paymentInfo.BillingAddress = billingAddress;
             _dbContext.PaymentInfos.Add(paymentInfo);
             _dbContext.SaveChanges();
             return RedirectToAction("index");

@@ -28,7 +28,7 @@
     </div>
     <div>
         <label asp-for="BillingAddress">Billing Address</label>
-        <select asp-for="BillingAddress">
+        <select asp-for="BillingAddress" name="billingAddress">
             @foreach (var address in ViewBag.Addresses)
             {
             <option>@address.StreetAddress</option>

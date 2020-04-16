@@ -79,11 +79,11 @@ namespace KabobwichesAsp.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult AddPaymentAndAddressToOrder(Order tempOrder)
+        public IActionResult AddPaymentAndAddressToOrder(Address deliveryAddress, PaymentInformation paymentInfo)
         {
             var order = _dbContext.Orders.Find(HttpContext.Session.GetInt32("orderId"));
-            order.DeliveryAddress = tempOrder.DeliveryAddress;
-            order.PaymentInformation = tempOrder.PaymentInformation;
+            order.DeliveryAddress = deliveryAddress;
+            order.PaymentInformation = paymentInfo;
             _dbContext.SaveChanges();
             return RedirectToAction("OrderOverview");
         }

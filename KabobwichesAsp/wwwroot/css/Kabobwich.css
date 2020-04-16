@@ -79,8 +79,8 @@ button {
         clear: left;
         margin-bottom: 1px;
         margin-right: 10px;
-        width: 250px;
-        height: 250px;
+        width: 16em;
+        height: 16em;
     }
 
     #offers figcaption {
@@ -90,7 +90,7 @@ button {
         float: left;
         font-size: 3em;
         color: var(--blue);
-        text-shadow: -1px 0 var(--bluedark), 0 1px var(--bluedark), 1px 0 var(--bluedark), 0 -1px var(--bluedark);
+        text-shadow: -1em 0 var(--bluedark), 0 1em var(--bluedark), 1em 0 var(--bluedark), 0 -1em var(--bluedark);
     }
 
     #offers::after {
@@ -101,4 +101,9 @@ button {
 
 #total {
     font-weight: bolder;
+}
+
+footer{
+    position: absolute;
+    bottom: 2em;
 }
