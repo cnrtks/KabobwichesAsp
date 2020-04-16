@@ -14,7 +14,7 @@
     --green: #98a249;
     --greendark: #667a3d;
     --blue: #9ab7e1;
-    --bluedark: 6b88b2;
+    --bluedark: #6b88b2;
     --navy: #234970;
     font-family: Georgia;
     background-color: var(--yellow);
@@ -41,6 +41,7 @@ input, select {
     background-color: var(--green);
     border: none;
     width: 100%;
+    margin: 1em;
 }
 
 button {
@@ -90,7 +91,7 @@ button {
         float: left;
         font-size: 3em;
         color: var(--blue);
-        text-shadow: -1em 0 var(--bluedark), 0 1em var(--bluedark), 1em 0 var(--bluedark), 0 -1em var(--bluedark);
+        text-shadow: -1px 0 var(--bluedark), 0 1px var(--bluedark), 1px 0 var(--bluedark), 0 -1px var(--bluedark);
     }
 
     #offers::after {

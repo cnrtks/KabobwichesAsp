@@ -29,7 +29,7 @@ namespace KabobwichesAsp.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CardType = table.Column<int>(nullable: false),
-                    CardNum = table.Column<int>(nullable: false),
+                    CardNum = table.Column<string>(nullable: true),
                     SecurityCode = table.Column<int>(nullable: false),
                     CardholderName = table.Column<string>(nullable: true),
                     BillingAddressId = table.Column<int>(nullable: true)

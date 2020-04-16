@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KabobwichesAsp.Migrations
 {
     [DbContext(typeof(Repository))]
-    [Migration("20200416214512_Migration 1.2")]
-    partial class Migration12
+    [Migration("20200416222442_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

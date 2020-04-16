@@ -28,11 +28,25 @@ namespace KabobwichesAsp.Models
 
         public int CountSides()
         {
-            return _sides.Count(ch => ch == ',');
+            try
+            {
+                return _sides.Count(ch => ch == ',');
+            }
+            catch
+            {
+                return 0;
+            }
         }
         public int CountDrinks()
         {
-            return _drinks.Count(ch => ch == ',');
+            try
+            {
+                return _drinks.Count(ch => ch == ',');
+            }
+            catch
+            {
+                return 0;
+            }
         }
     }
 }

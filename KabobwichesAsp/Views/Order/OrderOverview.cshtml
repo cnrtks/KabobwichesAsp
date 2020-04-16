@@ -6,19 +6,23 @@
 }
 
 <h2>OrderOverview</h2>
-<div class="buttonGroup">
-    <a href="/Order/KabobwichForm/" class="btn btn-block btn-primary">Add a kabobwich</a>
-    <br />
-    <a href="/Order/SidesAndDrinks/" class="btn btn-block btn-primary">Add sides and drinks</a>
-    <br />
-    <a href="/Order/PaymentAndAddress" class="btn btn-block btn-primary">Add delivery address and payment info</a>
-</div>
-<div class="orderInfo">
-    <p>kabobs: @ViewBag.KabobwichCount</p>
-    <p>sides: @numOfSides</p>
-    <p>drinks: @numOfDrinks</p>
-    @{ var subtotal = ViewBag.KabobwichCount * Price.Kabobwich + numOfSides * Price.Side + numOfDrinks * Price.Drink;}
-    <p>Subtotal: @string.Format("{0:C}", subtotal)</p>
-    <p id="total">Total: @string.Format("{0:C}", subtotal * (1 + Price.Tax))</p>
-</div>
-<a href="/Order/PlaceOrder/" class="btn btn-primary">Place Order</a>
+<form asp-action="PlaceOrder">
+    <div class="buttonGroup">
+        <a href="/Order/KabobwichForm/" class="btn btn-block btn-primary">Add a kabobwich</a>
+        <br />
+        <a href="/Order/SidesAndDrinks/" class="btn btn-block btn-primary">Add sides and drinks</a>
+        <br />
+        <a href="/Order/PaymentAndAddress" class="btn btn-block btn-primary">Add delivery address and payment info</a>
+    </div>
+    <div class="orderInfo">
+        <p>kabobs: @ViewBag.KabobwichCount</p>
+        <p>sides: @numOfSides</p>
+        <p>drinks: @numOfDrinks</p>
+        @{ var subtotal = ViewBag.KabobwichCount * Price.Kabobwich + numOfSides * Price.Side + numOfDrinks * Price.Drink;}
+        <p>Subtotal: @string.Format("{0:C}", subtotal)</p>
+        @{var total = subtotal * (1 + Price.Tax);}
+        <p id="total">Total: @string.Format("{0:C}", total)</p>
+    </div>
+    <input name="total" type="hidden" value="@total"/>
+    <button type="submit" class="btn btn-primary">Place Order</button>
+</form>

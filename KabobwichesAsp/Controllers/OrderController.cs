@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using KabobwichesAsp.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 
 namespace KabobwichesAsp.Controllers
 {
@@ -87,8 +88,14 @@ namespace KabobwichesAsp.Controllers
             _dbContext.SaveChanges();
             return RedirectToAction("OrderOverview");
         }
-        public IActionResult PlaceOrder()
+        public IActionResult PlaceOrder(string total)
         {
+            var orderId = HttpContext.Session.GetInt32("orderId");
+            ViewBag.OrderId = orderId;
+            var order = _dbContext.Orders.Include(o => o.DeliveryAddress).Include(o => o.PaymentInformation).SingleOrDefault(o => o.Id == orderId);
+            ViewBag.Address = order.DeliveryAddress.StreetAddress;
+            ViewBag.Payment = order.PaymentInformation.CardNum;
+            ViewBag.Total = total;
             return View("ThankYou");
         }
     }

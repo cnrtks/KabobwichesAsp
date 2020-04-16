@@ -6,22 +6,35 @@
 <h2>PaymentAndAddress</h2>
 <form asp-action="AddPaymentAndAddressToOrder">
     <h3>Delivery Address</h3>
-    <select asp-for="DeliveryAddress" name="deliveryAddress">
-        @{ foreach (Address address in ViewBag.Addresses)
-            {
-                <option value="@address">@address.StreetAddress</option>
-            }
+    @{
+        if (ViewBag.Addresses != null)
+        {
+            <select asp-for="DeliveryAddress" name="deliveryAddress">
+
+                @foreach (Address address in ViewBag.Addresses)
+                {
+                    <option value="@address">@address.StreetAddress</option>
+                }
+
+            </select>
         }
-    </select>
+    }
+    <a href="/Account/AddAddress">Add New Address</a>
     <h3>Payment Information</h3>
-    <select asp-for="PaymentInformation" name="paymentInfo">
-        @{
-            foreach (PaymentInformation payment in ViewBag.Payments)
-            {
-                <option value="@payment">@payment.CardNum</option>
-            }
+    @{
+        if (ViewBag.Payments != null)
+        {
+            <select asp-for="PaymentInformation" name="paymentInfo">
+
+                @foreach (PaymentInformation payment in ViewBag.Payments)
+                {
+                    <option value="@payment">@payment.CardNum</option>
+                }
+            </select>
         }
-    </select>
+    }
+    <a href="/Account/AddPaymentInfo">Add New Payment Info</a>
+    <br />
     <button type="submit">Confirm</button>
 </form>
 
