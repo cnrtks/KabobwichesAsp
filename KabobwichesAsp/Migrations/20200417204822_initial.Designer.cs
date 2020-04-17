@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KabobwichesAsp.Migrations
 {
     [DbContext(typeof(Repository))]
-    [Migration("20200417053110_initial")]
+    [Migration("20200417204822_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -119,8 +119,7 @@ namespace KabobwichesAsp.Migrations
                 {
                     b.HasOne("KabobwichesAsp.Models.Order", "Order")
                         .WithMany()
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("OrderId");
                 });
 
             modelBuilder.Entity("KabobwichesAsp.Models.Order", b =>
@@ -128,20 +127,18 @@ namespace KabobwichesAsp.Migrations
                     b.HasOne("KabobwichesAsp.Models.Address", "DeliveryAddress")
                         .WithMany()
                         .HasForeignKey("DeliveryAddressId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("KabobwichesAsp.Models.PaymentInformation", "PaymentInformation")
                         .WithMany()
-                        .HasForeignKey("PaymentInformationId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("PaymentInformationId");
                 });
 
             modelBuilder.Entity("KabobwichesAsp.Models.PaymentInformation", b =>
                 {
                     b.HasOne("KabobwichesAsp.Models.Address", "BillingAddress")
                         .WithMany()
-                        .HasForeignKey("BillingAddressId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("BillingAddressId");
                 });
 #pragma warning restore 612, 618
         }

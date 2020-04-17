@@ -29,15 +29,9 @@ namespace KabobwichesAsp.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CardType = table.Column<int>(nullable: false),
-<<<<<<< HEAD:KabobwichesAsp/Migrations/20200417053110_initial.cs
                     CardNum = table.Column<string>(maxLength: 16, nullable: false),
                     SecurityCode = table.Column<string>(maxLength: 3, nullable: false),
                     CardholderName = table.Column<string>(nullable: false),
-=======
-                    CardNum = table.Column<string>(nullable: true),
-                    SecurityCode = table.Column<int>(nullable: false),
-                    CardholderName = table.Column<string>(nullable: true),
->>>>>>> 295f3a1d4d8fb1591a28de3b314e6f5712c530f7:KabobwichesAsp/Migrations/20200416222442_initial.cs
                     BillingAddressId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -70,7 +64,7 @@ namespace KabobwichesAsp.Migrations
                         column: x => x.DeliveryAddressId,
                         principalTable: "Addresses",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Orders_PaymentInfos_PaymentInformationId",
                         column: x => x.PaymentInformationId,

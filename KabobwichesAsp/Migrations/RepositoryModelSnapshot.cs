@@ -15,7 +15,7 @@ namespace KabobwichesAsp.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.11-servicing-32099")
+                .HasAnnotation("ProductVersion", "2.1.14-servicing-32113")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -117,8 +117,7 @@ namespace KabobwichesAsp.Migrations
                 {
                     b.HasOne("KabobwichesAsp.Models.Order", "Order")
                         .WithMany()
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("OrderId");
                 });
 
             modelBuilder.Entity("KabobwichesAsp.Models.Order", b =>
@@ -126,20 +125,18 @@ namespace KabobwichesAsp.Migrations
                     b.HasOne("KabobwichesAsp.Models.Address", "DeliveryAddress")
                         .WithMany()
                         .HasForeignKey("DeliveryAddressId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("KabobwichesAsp.Models.PaymentInformation", "PaymentInformation")
                         .WithMany()
-                        .HasForeignKey("PaymentInformationId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("PaymentInformationId");
                 });
 
             modelBuilder.Entity("KabobwichesAsp.Models.PaymentInformation", b =>
                 {
                     b.HasOne("KabobwichesAsp.Models.Address", "BillingAddress")
                         .WithMany()
-                        .HasForeignKey("BillingAddressId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("BillingAddressId");
                 });
 #pragma warning restore 612, 618
         }

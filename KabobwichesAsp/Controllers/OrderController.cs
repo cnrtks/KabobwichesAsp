@@ -111,7 +111,6 @@ namespace KabobwichesAsp.Controllers
             Kabobwich kabobwich = _dbContext.Kabobwiches.Find(HttpContext.Session.GetInt32("kabobwichId"));
             kabobwich.Order = order;
             _dbContext.SaveChanges();
-
             return View("ThankYou");
         }
     }

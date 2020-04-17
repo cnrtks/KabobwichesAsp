@@ -1,4 +1,4 @@
-﻿@model  PaymentInformation
+﻿@model PaymentInformation
 @{
 
     Layout = "_Layout";
@@ -8,9 +8,9 @@
 
 <h2>PaymentInfoForm</h2>
 <form asp-action="SavePaymentInfo">
-    <div>
+    <div class="form-group">
         <label asp-for="CardType">Card Type</label>
-        <select asp-for="CardType">
+        <select asp-for="CardType" class="form-control">
             @foreach (CardType cType in (CardType[])Enum.GetValues(typeof(CardType)))
             {
                 <option id="@cType">@cType</option>
@@ -18,30 +18,34 @@
         </select>
         @Html.ValidationMessageFor(model => Model.CardType, "", new { @class = "text-danger" })
     </div>
-    <div>
+    <div class="form-group">
         <label asp-for="CardNum">Card Number</label>
 
         @Html.TextBoxFor(model => Model.CardNum, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => Model.CardNum, "", new { @maxLength = 16 ,@class = "text-danger" })
-        
+        @Html.ValidationMessageFor(model => Model.CardNum, "", new { @maxLength = 16, @class = "text-danger" })
+
     </div>
-    <div>
+    <div class="form-group">
         <label asp-for="SecurityCode">Security Code</label>
         @Html.TextBoxFor(model => Model.SecurityCode, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => Model.SecurityCode, "", new { @maxLength = 3,  @class = "text-danger" })
+        @Html.ValidationMessageFor(model => Model.SecurityCode, "", new { @maxLength = 3, @class = "text-danger" })
     </div>
-    <div>
+    <div class="form-group">
         <label asp-for="CardholderName">Cardholder Name</label>
         @Html.TextBoxFor(model => Model.CardholderName, new { @class = "form-control" })
         @Html.ValidationMessageFor(model => Model.CardholderName, "", new { @class = "text-danger" })
-       
+
     </div>
-    <div>
+    <div class="form-group">
         <label asp-for="BillingAddress">Billing Address</label>
         @Html.DropDownList("billingid", (SelectList)ViewBag.Addresses, new { @class = "form-control" })
         @Html.ValidationMessageFor(model => Model.BillingAddress, "", new { @class = "text-danger" })
 
 
     </div>
-    <button type="submit">Add Payment Information</button>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Add Payment Information</button>
+    </div>
 </form>
+<br />
+<br />
