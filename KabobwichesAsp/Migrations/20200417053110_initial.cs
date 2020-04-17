@@ -13,9 +13,9 @@ namespace KabobwichesAsp.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    StreetAddress = table.Column<string>(nullable: true),
-                    City = table.Column<string>(nullable: true),
-                    PostalCode = table.Column<string>(nullable: true)
+                    StreetAddress = table.Column<string>(nullable: false),
+                    City = table.Column<string>(nullable: false),
+                    PostalCode = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -29,9 +29,9 @@ namespace KabobwichesAsp.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CardType = table.Column<int>(nullable: false),
-                    CardNum = table.Column<int>(nullable: false),
-                    SecurityCode = table.Column<int>(nullable: false),
-                    CardholderName = table.Column<string>(nullable: true),
+                    CardNum = table.Column<string>(maxLength: 16, nullable: false),
+                    SecurityCode = table.Column<string>(maxLength: 3, nullable: false),
+                    CardholderName = table.Column<string>(nullable: false),
                     BillingAddressId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -53,7 +53,7 @@ namespace KabobwichesAsp.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Sides = table.Column<string>(nullable: true),
                     Drinks = table.Column<string>(nullable: true),
-                    DeliveryAddressId = table.Column<int>(nullable: true),
+                    DeliveryAddressId = table.Column<int>(nullable: false),
                     PaymentInformationId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>

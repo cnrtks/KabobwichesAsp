@@ -1,5 +1,6 @@
 ﻿@model  PaymentInformation
 @{
+    Layout = "_Layout";
     ViewData["Title"] = "Payment Information";
 }
 
@@ -13,27 +14,30 @@
                 <option id="@Convert.ChangeType(cType, typeof(int))">@cType</option>
             }
         </select>
+        @Html.ValidationMessageFor(model => Model.CardType, "", new { @class = "text-danger" })
     </div>
     <div>
         <label asp-for="CardNum">Card Number</label>
-        <input asp-for="CardNum" type="text" class="form-control" maxlength="16"  required />
+        @Html.TextBoxFor(model => Model.CardNum, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => Model.CardNum, "", new { @maxLength = 16 ,@class = "text-danger" })
+        
     </div>
     <div>
         <label asp-for="SecurityCode">Security Code</label>
-        <input asp-for="SecurityCode" type="text" class="form-control" maxlength="3" required />
+        @Html.TextBoxFor(model => Model.SecurityCode, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => Model.SecurityCode, "", new { @maxLength = 3,  @class = "text-danger" })
     </div>
     <div>
         <label asp-for="CardholderName">Cardholder Name</label>
-        <input asp-for="CardholderName" type="text" class="form-control" required />
+        @Html.TextBoxFor(model => Model.CardholderName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => Model.CardholderName, "", new { @class = "text-danger" })
+       
     </div>
     <div>
         <label asp-for="BillingAddress">Billing Address</label>
-        <select asp-for="BillingAddress" class="form-control" required>
-            @foreach (var address in ViewBag.Addresses)
-            {
-            <option value="@address.Id">@address.StreetAddress</option>
-            }
-        </select>
+        @Html.DropDownList("billingid", (SelectList)ViewBag.Addresses, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => Model.BillingAddress, "", new { @class = "text-danger" })
+
     </div>
     <button type="submit" class="btn btn-primary">Add Payment Information</button>
 </form>

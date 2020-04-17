@@ -1,4 +1,5 @@
 ﻿@{
+    Layout = "_Layout";
     ViewData["Title"] = "SidesAndDrinks";
 }
 
@@ -21,7 +22,7 @@
             <button type="button" class="btn btn-sm btn-primary"  onClick="(function () { document.getElementById('DrinkString').value += '@drink.ToString(),'})()"> + </button>
         }
     }
-    <input type="hidden" name="orderId" value="@ViewBag.OrderId" />
+    
     <br />
     <button type="submit" class="btn btn-primary">Confirm</button>
 </form>

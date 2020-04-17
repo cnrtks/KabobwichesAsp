@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+
 using KabobwichesAsp.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace KabobwichesAsp.Controllers
 {
@@ -27,6 +29,7 @@ namespace KabobwichesAsp.Controllers
         public IActionResult AddPaymentInfo()
         {
             ViewBag.Addresses = _dbContext.Addresses;
+            ViewBag.Addresses = new SelectList(_dbContext.Addresses, "Id", "StreetAddress");
             return View("PaymentInfoForm");
         }
 
@@ -42,13 +45,16 @@ namespace KabobwichesAsp.Controllers
         //update address
 
         [HttpPost]
-        public IActionResult SavePaymentInfo(PaymentInformation paymentInfo, string BillingAddress)
+        public IActionResult SavePaymentInfo(PaymentInformation paymentInfo, string billingid)
         {
-            paymentInfo.BillingAddress = _dbContext.Addresses.Find(Convert.ToInt32(BillingAddress));
+            paymentInfo.BillingAddress = _dbContext.Addresses.Find(Convert.ToInt32(billingid));
             _dbContext.PaymentInfos.Add(paymentInfo);
             _dbContext.SaveChanges();
             return RedirectToAction("index");
         }
+
+
+      
         //remove payment
         //update payment
     }

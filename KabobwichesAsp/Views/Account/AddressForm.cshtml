@@ -1,5 +1,6 @@
 ﻿@model Address
 @{
+    Layout = "_Layout";
     ViewData["Title"] = "Customer Address";
 }
 
@@ -7,15 +8,19 @@
 <form asp-action="SaveAddress">
     <div>
         <label asp-for="StreetAddress">Street Address</label>
-        <input asp-for="StreetAddress" type="text" class="form-control" required/>
+        @Html.TextBoxFor(model => Model.StreetAddress, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => Model.StreetAddress , "",new { @class = "text-danger" })
     </div>
     <div>
         <label asp-for="City">City</label>
-        <input asp-for="City" type="text" class="form-control" required />
+        @Html.TextBoxFor(model => Model.City, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => Model.City, "", new { @class = "text-danger" })
     </div>
     <div>
         <label asp-for="PostalCode">Postal Code</label>
-        <input asp-for="PostalCode" type="text" class="form-control" required />
+        @Html.TextBoxFor(model => Model.PostalCode, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => Model.PostalCode, "", new { @class = "text-danger" })
+     
     </div>
     <button type="submit" class="btn btn-primary">Add Address</button>
 </form>

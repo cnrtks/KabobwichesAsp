@@ -1,27 +1,19 @@
 ﻿@model Order
 @{
+    Layout = "_Layout";
     ViewData["Title"] = "PaymentAndAddress";
 }
 
 <h2>PaymentAndAddress</h2>
 <form asp-action="AddPaymentAndAddressToOrder">
     <h3>Delivery Address</h3>
-    <select asp-for="DeliveryAddress" class="form-control">
-        @{ foreach (Address address in ViewBag.Addresses)
-            {
-                <option value="@address.Id">@address.StreetAddress</option>
-            }
-        }
-    </select>
+    @Html.DropDownList("addressid", (SelectList)ViewBag.Addresses, new { @class = "form-control" })
+    @Html.ValidationMessageFor(model => Model.DeliveryAddress, "", new { @class = "text-danger" })
+
     <h3>Payment Information</h3>
-    <select asp-for="PaymentInformation" class="form-control">
-        @{
-            foreach (PaymentInformation payment in ViewBag.Payments)
-            {
-                <option value="@payment.Id">@payment.CardNum</option>
-            }
-        }
-    </select>
+
+    @Html.DropDownList("billingid", (SelectList)ViewBag.Payments, new { @class = "form-control" })
+    @Html.ValidationMessageFor(model => Model.PaymentInformation, "", new { @class = "text-danger" })
     <button type="submit" class="btn btn-primary">Confirm</button>
 </form>
 

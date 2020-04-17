@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using KabobwichesAsp.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace KabobwichesAsp.Controllers
 {
@@ -24,19 +25,30 @@ namespace KabobwichesAsp.Controllers
 
         public IActionResult NewOrder()
         {
-            Order order = new Order();
-            _dbContext.Orders.Add(order);
-            _dbContext.SaveChanges();
-            HttpContext.Session.SetInt32("orderId", order.Id);
+
+            if (String.IsNullOrEmpty(HttpContext.Session.GetString("kabobwichId"))){
+                ViewBag.KabobwichCount = 0;
+            }
+            else
+            {
+                ViewBag.KabobwichCount = _dbContext.Kabobwiches.Where(k => k.Id == HttpContext.Session.GetInt32("orderId")).Count();
+            }
             return RedirectToAction("OrderOverview");
         }
 
         public IActionResult OrderOverview()
         {
-            var orderId = HttpContext.Session.GetInt32("orderId");
-            var order = _dbContext.Orders.Find(orderId);
-            ViewBag.KabobwichCount = _dbContext.Kabobwiches.Where(k => k.Order.Id == orderId).Count();
-            return View("OrderOverview", order);
+
+            ViewBag.addressid = HttpContext.Session.GetString("addressid");
+            ViewBag.billingid = HttpContext.Session.GetString("billingid");
+            ViewBag.KabobwichCount = _dbContext.Kabobwiches.Where(k => k.Id == HttpContext.Session.GetInt32("kabobwichId")).Count();
+           
+            Order order = new Order();
+            order.Sides = String.IsNullOrEmpty(HttpContext.Session.GetString("sideString")) ? "" : HttpContext.Session.GetString("sideString");
+            order.Drinks = String.IsNullOrEmpty(HttpContext.Session.GetString("drinkString")) ? "" : HttpContext.Session.GetString("drinkString");
+            ViewBag.numOfSides = String.IsNullOrEmpty(order.Sides) ? 0: order.CountSides();
+            ViewBag.numOfDrinks = String.IsNullOrEmpty(order.Drinks) ? 0 : order.CountDrinks();
+            return View("OrderOverview");
         }
 
         public IActionResult KabobwichForm()
@@ -47,13 +59,13 @@ namespace KabobwichesAsp.Controllers
         [HttpPost]
         public IActionResult AddKabobwich(Kabobwich kabobwich)
         {
-            var order = _dbContext.Orders.Find(HttpContext.Session.GetInt32("orderId"));
             if (kabobwich != null)
             {
-                kabobwich.Order = order;
+               // kabobwich.Order = order;
                 _dbContext.Kabobwiches.Add(kabobwich);
                 _dbContext.SaveChanges();
             }
+            HttpContext.Session.SetInt32("kabobwichId", kabobwich.Id);
             return RedirectToAction("OrderOverview");
         }
 
@@ -65,32 +77,39 @@ namespace KabobwichesAsp.Controllers
         [HttpPost]
         public IActionResult AddSidesAndDrinksToOrder(string sideString, string drinkString)
         {
-            var order = _dbContext.Orders.Find(HttpContext.Session.GetInt32("orderId"));
-            order.Sides = sideString;
-            order.Drinks = drinkString;
-            _dbContext.SaveChanges();
+            HttpContext.Session.SetString("sideString", sideString);
+            HttpContext.Session.SetString("drinkString", drinkString);
+           
             return RedirectToAction("OrderOverview");
         }
 
         public IActionResult PaymentAndAddress()
         {
-            ViewBag.Addresses = _dbContext.Addresses;
-            ViewBag.Payments = _dbContext.PaymentInfos;
+            ViewBag.Addresses = new SelectList(_dbContext.Addresses, "Id", "StreetAddress");
+            ViewBag.Payments = new SelectList(_dbContext.PaymentInfos, "Id", "CardNum");
             return View();
         }
         [HttpPost]
-        public IActionResult AddPaymentAndAddressToOrder(Order order, string DeliveryAddress,string PaymentInformation)
+        public IActionResult AddPaymentAndAddressToOrder(string addressid, string billingid)
         {
-             order = _dbContext.Orders.Find(HttpContext.Session.GetInt32("orderId"));
-            order.DeliveryAddress = _dbContext.Addresses.Find(Convert.ToInt32(DeliveryAddress));
-            order.PaymentInformation = _dbContext.PaymentInfos.Find(Convert.ToInt32(PaymentInformation));
-           
             
-            _dbContext.SaveChanges();
+            HttpContext.Session.SetString("addressid", addressid);
+            HttpContext.Session.SetString("billingid", billingid);
             return RedirectToAction("OrderOverview");
         }
         public IActionResult PlaceOrder()
         {
+            Order order = new Order();
+            order.DeliveryAddress = _dbContext.Addresses.Find(Convert.ToInt32(HttpContext.Session.GetString("addressid")));
+            order.PaymentInformation = _dbContext.PaymentInfos.Find(Convert.ToInt32(HttpContext.Session.GetString("billingid")));
+            order.Drinks = HttpContext.Session.GetString("drinkString");
+            order.Sides = HttpContext.Session.GetString("sideString");
+            _dbContext.Orders.Add(order);
+            _dbContext.SaveChanges();
+
+            Kabobwich kabobwich = _dbContext.Kabobwiches.Find(HttpContext.Session.GetInt32("kabobwichId"));
+            kabobwich.Order = order;
+            _dbContext.SaveChanges();
             return View("ThankYou");
         }
     }

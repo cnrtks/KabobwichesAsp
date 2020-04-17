@@ -25,11 +25,14 @@ namespace KabobwichesAsp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("City");
+                    b.Property<string>("City")
+                        .IsRequired();
 
-                    b.Property<string>("PostalCode");
+                    b.Property<string>("PostalCode")
+                        .IsRequired();
 
-                    b.Property<string>("StreetAddress");
+                    b.Property<string>("StreetAddress")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -65,7 +68,7 @@ namespace KabobwichesAsp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("DeliveryAddressId");
+                    b.Property<int>("DeliveryAddressId");
 
                     b.Property<string>("Drinks");
 
@@ -90,13 +93,18 @@ namespace KabobwichesAsp.Migrations
 
                     b.Property<int?>("BillingAddressId");
 
-                    b.Property<string>("CardNum");
+                    b.Property<string>("CardNum")
+                        .IsRequired()
+                        .HasMaxLength(16);
 
                     b.Property<int>("CardType");
 
-                    b.Property<string>("CardholderName");
+                    b.Property<string>("CardholderName")
+                        .IsRequired();
 
-                    b.Property<int>("SecurityCode");
+                    b.Property<string>("SecurityCode")
+                        .IsRequired()
+                        .HasMaxLength(3);
 
                     b.HasKey("Id");
 
@@ -109,25 +117,29 @@ namespace KabobwichesAsp.Migrations
                 {
                     b.HasOne("KabobwichesAsp.Models.Order", "Order")
                         .WithMany()
-                        .HasForeignKey("OrderId");
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("KabobwichesAsp.Models.Order", b =>
                 {
                     b.HasOne("KabobwichesAsp.Models.Address", "DeliveryAddress")
                         .WithMany()
-                        .HasForeignKey("DeliveryAddressId");
+                        .HasForeignKey("DeliveryAddressId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("KabobwichesAsp.Models.PaymentInformation", "PaymentInformation")
                         .WithMany()
-                        .HasForeignKey("PaymentInformationId");
+                        .HasForeignKey("PaymentInformationId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("KabobwichesAsp.Models.PaymentInformation", b =>
                 {
                     b.HasOne("KabobwichesAsp.Models.Address", "BillingAddress")
                         .WithMany()
-                        .HasForeignKey("BillingAddressId");
+                        .HasForeignKey("BillingAddressId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 #pragma warning restore 612, 618
         }
