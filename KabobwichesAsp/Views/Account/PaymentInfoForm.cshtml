@@ -1,23 +1,26 @@
 ﻿@model  PaymentInformation
 @{
+
     Layout = "_Layout";
     ViewData["Title"] = "Payment Information";
+
 }
 
 <h2>PaymentInfoForm</h2>
 <form asp-action="SavePaymentInfo">
     <div>
         <label asp-for="CardType">Card Type</label>
-        <select asp-for="CardType" class="form-control" required>
+        <select asp-for="CardType">
             @foreach (CardType cType in (CardType[])Enum.GetValues(typeof(CardType)))
             {
-                <option id="@Convert.ChangeType(cType, typeof(int))">@cType</option>
+                <option id="@cType">@cType</option>
             }
         </select>
         @Html.ValidationMessageFor(model => Model.CardType, "", new { @class = "text-danger" })
     </div>
     <div>
         <label asp-for="CardNum">Card Number</label>
+
         @Html.TextBoxFor(model => Model.CardNum, new { @class = "form-control" })
         @Html.ValidationMessageFor(model => Model.CardNum, "", new { @maxLength = 16 ,@class = "text-danger" })
         
@@ -38,6 +41,7 @@
         @Html.DropDownList("billingid", (SelectList)ViewBag.Addresses, new { @class = "form-control" })
         @Html.ValidationMessageFor(model => Model.BillingAddress, "", new { @class = "text-danger" })
 
+
     </div>
-    <button type="submit" class="btn btn-primary">Add Payment Information</button>
+    <button type="submit">Add Payment Information</button>
 </form>

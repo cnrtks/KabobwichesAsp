@@ -33,11 +33,13 @@ namespace KabobwichesAsp.Models
 
         public int CountSides()
         {
+
             return String.IsNullOrEmpty(_sides) ? 0 : _sides.Count(ch => ch == ',');
         }
         public int CountDrinks()
         {
             return String.IsNullOrEmpty(_drinks) ? 0 : _drinks.Count(ch => ch == ',');
+
         }
     }
 }

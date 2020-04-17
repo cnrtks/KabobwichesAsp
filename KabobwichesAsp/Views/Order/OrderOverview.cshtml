@@ -6,6 +6,7 @@
     var numOfDrinks = ViewBag.numOfDrinks;
 }
 
+
 <div class="container">
     <h2>OrderOverview</h2><hr />
     <div class="buttonGroup">
@@ -15,6 +16,7 @@
         <br />
         <a href="/Order/PaymentAndAddress" class="btn btn-block btn-primary">Add delivery address and payment info</a>
     </div>
+
     <form asp-action="PlaceOrder">
         <div class="orderInfo">
             <p>kabobs: @ViewBag.KabobwichCount</p>

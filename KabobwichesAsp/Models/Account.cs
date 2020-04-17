@@ -20,17 +20,5 @@ namespace KabobwichesAsp.Models
             _orders = new List<Order>();
             _kabobwiches = new List<Kabobwich>();
         }
-        public void AddPayment()
-        {
-
-        }
-        public void AddAddress()
-        {
-
-        }
-        public void ProvideFeedback()
-        {
-
-        }
     }
 }

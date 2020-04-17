@@ -95,9 +95,10 @@ namespace KabobwichesAsp.Controllers
             
             HttpContext.Session.SetString("addressid", addressid);
             HttpContext.Session.SetString("billingid", billingid);
+
             return RedirectToAction("OrderOverview");
         }
-        public IActionResult PlaceOrder()
+        public IActionResult PlaceOrder(string total)
         {
             Order order = new Order();
             order.DeliveryAddress = _dbContext.Addresses.Find(Convert.ToInt32(HttpContext.Session.GetString("addressid")));
@@ -110,6 +111,7 @@ namespace KabobwichesAsp.Controllers
             Kabobwich kabobwich = _dbContext.Kabobwiches.Find(HttpContext.Session.GetInt32("kabobwichId"));
             kabobwich.Order = order;
             _dbContext.SaveChanges();
+
             return View("ThankYou");
         }
     }

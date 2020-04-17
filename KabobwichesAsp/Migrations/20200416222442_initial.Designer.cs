@@ -4,14 +4,16 @@ using KabobwichesAsp.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace KabobwichesAsp.Migrations
 {
     [DbContext(typeof(Repository))]
-    partial class RepositoryModelSnapshot : ModelSnapshot
+    [Migration("20200416222442_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,14 +27,11 @@ namespace KabobwichesAsp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("City")
-                        .IsRequired();
+                    b.Property<string>("City");
 
-                    b.Property<string>("PostalCode")
-                        .IsRequired();
+                    b.Property<string>("PostalCode");
 
-                    b.Property<string>("StreetAddress")
-                        .IsRequired();
+                    b.Property<string>("StreetAddress");
 
                     b.HasKey("Id");
 
@@ -68,7 +67,7 @@ namespace KabobwichesAsp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("DeliveryAddressId");
+                    b.Property<int?>("DeliveryAddressId");
 
                     b.Property<string>("Drinks");
 
@@ -93,18 +92,13 @@ namespace KabobwichesAsp.Migrations
 
                     b.Property<int?>("BillingAddressId");
 
-                    b.Property<string>("CardNum")
-                        .IsRequired()
-                        .HasMaxLength(16);
+                    b.Property<string>("CardNum");
 
                     b.Property<int>("CardType");
 
-                    b.Property<string>("CardholderName")
-                        .IsRequired();
+                    b.Property<string>("CardholderName");
 
-                    b.Property<string>("SecurityCode")
-                        .IsRequired()
-                        .HasMaxLength(3);
+                    b.Property<int>("SecurityCode");
 
                     b.HasKey("Id");
 
@@ -117,29 +111,25 @@ namespace KabobwichesAsp.Migrations
                 {
                     b.HasOne("KabobwichesAsp.Models.Order", "Order")
                         .WithMany()
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("OrderId");
                 });
 
             modelBuilder.Entity("KabobwichesAsp.Models.Order", b =>
                 {
                     b.HasOne("KabobwichesAsp.Models.Address", "DeliveryAddress")
                         .WithMany()
-                        .HasForeignKey("DeliveryAddressId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("DeliveryAddressId");
 
                     b.HasOne("KabobwichesAsp.Models.PaymentInformation", "PaymentInformation")
                         .WithMany()
-                        .HasForeignKey("PaymentInformationId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("PaymentInformationId");
                 });
 
             modelBuilder.Entity("KabobwichesAsp.Models.PaymentInformation", b =>
                 {
                     b.HasOne("KabobwichesAsp.Models.Address", "BillingAddress")
                         .WithMany()
-                        .HasForeignKey("BillingAddressId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("BillingAddressId");
                 });
 #pragma warning restore 612, 618
         }
